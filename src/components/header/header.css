@@ -1,0 +1,44 @@
+.header-container {
+    display: flex;
+    width: calc(100%);
+    padding: 50px auto;
+    background-color: black;;
+}
+
+.header-content{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 100px;
+}
+
+.header-logo{
+    width: 80px;
+    padding: 10px;
+}
+
+.dropdown-content a{
+    margin-left: 50px;
+    margin-right: 50px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.dropdown-content a:hover{
+    color: #f10f0f;
+}
+
+.login-btn{
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-btn:hover{
+    color: #0fc4f1;
+}
