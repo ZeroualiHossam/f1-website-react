@@ -1,19 +1,19 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './pages/main/main';
-import SignIn from './components/login/signin';
-import Chat from './components/chat/chat';
-import SignOut from './components/signout/signout';
-
-import { auth } from './firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import ChatRoom from './pages/chatroom/chatroom';
 
 function App() {
-  const [user] = useAuthState(auth);
-  console.log(user);
+
   return (
     <div className="App">
-      {user ? <Chat /> : <SignIn />}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/community" element ={<ChatRoom />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -18,6 +18,11 @@
     padding: 10px;
 }
 
+.options .active {
+    font-weight: 600;
+    color: red;
+}
+
 .dropdown-content a{
     margin-left: 50px;
     margin-right: 50px;
