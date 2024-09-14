@@ -38,7 +38,7 @@ function Chat() {
         <div className='chat-room'>
             <div className="chat-container">
                 {messages.map((message, index) => (
-                    <ChatMessage key={index} prop={message} photoURL={auth.currentUser.photoURL}/>
+                    <ChatMessage key={index} prop={message} />
                 ))}
             </div>
             <div ref={dummy}> </div>
