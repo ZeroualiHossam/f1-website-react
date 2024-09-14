@@ -4,17 +4,18 @@ import { auth } from '../../firebase';
 
 function ChatMessage({ prop }) {
     const { text, uid, photoURL } = prop;
-    const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
-    const fallbackImage = 'URL_DE_IMAGEN_DE_RESPALDO'; 
+    const currentUser = auth.currentUser;
+    const messageClass = currentUser && uid === currentUser.uid ? 'sent' : 'received';
+    const fallbackImage = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
 
     return (
         <div className={`message ${messageClass}`}>
-            <img
+            <img className='avatar-msg'
                 src={photoURL}
                 alt="User Avatar"
                 onError={(e) => e.target.src = fallbackImage}
             />
-            <p>{text}</p>
+            <p className='text-msg'>{text}</p>
         </div>
     );
 }
