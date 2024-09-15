@@ -9,7 +9,8 @@ class F1_Strategy_backtracking():
 
     def __init__(self, strategy):
         self.current_strategy = strategy
-        self.best_strategy = f1st.F1_Strategy(laps=strategy.laps, pit_time=strategy.pit_time, tyre_data=strategy.tyre_data, stints=[f1st.F1_Stint('soft',strategy.laps)])
+        
+        self.best_strategy = f1st.F1_Strategy(laps=strategy.laps, pit_time=strategy.pit_time, tyre_data=strategy.tyre_data, stints=[])
         self.laps = strategy.laps - strategy.completed_laps()
         self.pit_time = strategy.pit_time
         self.tyre_data = strategy.tyre_data
@@ -41,9 +42,6 @@ class F1_Strategy_backtracking():
                 else:
                     tyres.append(0)
         return tyres
-
-    def one_change(self,tyres):
-        return len(list(set(tyres))) > 1
 
     def generate_tyre_combinations(self):
         #Generates all possible tyre combinations for
@@ -152,10 +150,12 @@ class F1_Strategy_backtracking():
                         for pit in range(2):
                             strategy = f1st.F1_Strategy(laps=self.laps, pit_time=self.pit_time, tyre_data=self.tyre_data)
                             strategy.stints = stints
-                            
+
                             res = strategy.unify_strategies(self.current_strategy,pit)
-                            if res:
-                                if strategy.heuristic() < self.best_strategy.heuristic(): #check if we improve
+                            accepted = strategy.accepted_strategy()
+                            if res and accepted:
+                                if strategy.heuristic() < self.best_strategy.heuristic() or self.best_strategy.completed_laps() == 0: #check if we improve
+
                                     self.best_strategy = strategy
 
                 pit_laps = self.add1pit_laps(pit_laps) #go to the following pit_laps
@@ -168,9 +168,8 @@ class F1_Strategy_backtracking():
         #Once we've computed the best strategy
         #we get all strategies that are best than the
         #best strategy plus 15s, removing almost duplicate.
-
         best_strategies_list = []
-        for stops in range(2,3):
+        for stops in range(0,3):
             pit_laps = [1]*stops #Start with all stops at lap 1
             run_stops = True
             while (run_stops):
@@ -185,7 +184,8 @@ class F1_Strategy_backtracking():
                             strategy.stints = stints
 
                             res = strategy.unify_strategies(self.current_strategy, pit)
-                            if res:
+                            accepted = strategy.accepted_strategy()
+                            if res and accepted:
                                 heuristic = strategy.heuristic()
                                 if strategy.heuristic() < self.best_strategy.heuristic() + 3: #check if we improve
                                     best_strategies_list.append((strategy,heuristic))

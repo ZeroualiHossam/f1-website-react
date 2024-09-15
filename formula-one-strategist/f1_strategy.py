@@ -48,6 +48,12 @@ class F1_Strategy():
             self.stints = strategy2.stints + self.stints
         return True
     
+    def accepted_strategy(self):
+        tyres = []
+        for stint in self.stints:
+            tyres.append(stint.tyre)
+        return len(self.stints) > 1 and len(list(set(tyres))) > 1
+    
     def completed_laps(self):
         laps = 0
         for stint in self.stints:
