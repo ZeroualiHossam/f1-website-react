@@ -17,11 +17,12 @@ class F1_Strategy():
     #spent on pits to compute how good it is
     #with the heuristic function.
 
-    def __init__(self, laps, pit_time, tyre_data, stints=[]):
+    def __init__(self, laps, pit_time, tyre_data, stints=[],safety_car=[]):
         self.stints = stints
         self.laps = laps
         self.pit_time = pit_time
         self.tyre_data = tyre_data
+        self.safety_car = safety_car
     
     def print(self):
         #prints a f1 strategy with
@@ -31,9 +32,12 @@ class F1_Strategy():
         for i,stint in enumerate(self.stints):
             print('Stint '+str(i)+': ',stint.tyre,' ',stint.laps)
         print(self.heuristic())
+        print()
     
     def strat_type_string(self):
-        string = ''.join([stint.tyre+' ' for stint in self.stints])
+        tyres = [stint.tyre for stint in self.stints]
+        tyres.sort() #avoid printing permutes of same strategy
+        string = ''.join([tyre+' ' for tyre in tyres])
         return string
     
     def unify_strategies(self, strategy2, pit):
@@ -69,13 +73,25 @@ class F1_Strategy():
         #Que compruebe haya un pit y variacion de tyre.
         #if len(self.stints > 1) and 
         total_time = 0
+        pit_laps = [] #Laps it pits
         for stint in self.stints:
             time_laps = stint.laps * self.tyre_data[stint.tyre]['time'] #Time if there was no degradation
             offset_total = ((stint.laps-1) * (stint.laps)) / 2 #Times we have to add the loss
             offset_time = offset_total * self.tyre_data[stint.tyre]['loss'] #We multiply by the loss
             total_time += time_laps + offset_time #The total time adds the time spent on this stint.
+            if len(pit_laps) > 0:
+                pit_laps.append(stint.laps+pit_laps[len(pit_laps)-1])
+            else:
+                pit_laps.append(stint.laps)
         
-        total_time += (len(self.stints)-1) * self.pit_time #We add the pit time.
+        if (len(pit_laps)>0):
+            pit_laps.pop() #The last stint does not end in a pit stop
+        n_pits_in_sc = 0
+        for lap in pit_laps:
+            if lap in self.safety_car:
+                n_pits_in_sc +=1
+
+        total_time += (len(self.stints)-1 - n_pits_in_sc) * self.pit_time + (n_pits_in_sc) * self.pit_time * 0.6  #We add the pit time, *0.6 under sc.
         
         return total_time
     

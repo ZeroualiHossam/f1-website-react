@@ -10,10 +10,11 @@ class F1_Strategy_backtracking():
     def __init__(self, strategy):
         self.current_strategy = strategy
         
-        self.best_strategy = f1st.F1_Strategy(laps=strategy.laps, pit_time=strategy.pit_time, tyre_data=strategy.tyre_data, stints=[])
+        self.best_strategy = f1st.F1_Strategy(laps=strategy.laps, pit_time=strategy.pit_time, tyre_data=strategy.tyre_data, stints=[],safety_car=strategy.safety_car)
         self.laps = strategy.laps - strategy.completed_laps()
         self.pit_time = strategy.pit_time
         self.tyre_data = strategy.tyre_data
+        self.safety_car = strategy.safety_car
 
         self.tyre_vector = ['soft','medium','hard']
 
@@ -148,7 +149,7 @@ class F1_Strategy_backtracking():
                     strategies = self.generate_strategies_from_pit_laps(pit_laps)
                     for stints in strategies:
                         for pit in range(2):
-                            strategy = f1st.F1_Strategy(laps=self.laps, pit_time=self.pit_time, tyre_data=self.tyre_data)
+                            strategy = f1st.F1_Strategy(laps=self.laps, pit_time=self.pit_time, tyre_data=self.tyre_data, safety_car=self.safety_car)
                             strategy.stints = stints
 
                             res = strategy.unify_strategies(self.current_strategy,pit)
@@ -180,7 +181,7 @@ class F1_Strategy_backtracking():
                     strategies = self.generate_strategies_from_pit_laps(pit_laps)
                     for stints in strategies:
                         for pit in range(2): #pit after the current strategy or not
-                            strategy = f1st.F1_Strategy(laps=self.laps, pit_time=self.pit_time, tyre_data=self.tyre_data)
+                            strategy = f1st.F1_Strategy(laps=self.laps, pit_time=self.pit_time, tyre_data=self.tyre_data, safety_car=self.safety_car)
                             strategy.stints = stints
 
                             res = strategy.unify_strategies(self.current_strategy, pit)
