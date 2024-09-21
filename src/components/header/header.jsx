@@ -17,7 +17,7 @@ function Header() {
                     <div className='dropdown-content'>
                         <NavLink to="/">Option 1</NavLink>
                         <NavLink to="/community">Community</NavLink>
-                        <NavLink to="/a">Option 3</NavLink>
+                        <NavLink to="/strategist">Option 3</NavLink>
                     </div>
                 </div>
                 {user ? <SignOut auth={auth} /> : <SignIn />}
