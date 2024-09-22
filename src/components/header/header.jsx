@@ -15,9 +15,9 @@ function Header() {
                 <NavLink to='/'> <img className='header-logo' src="https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1024/content/dam/fom-website/manual/Helmets2023/sainz" alt="" /></NavLink>
                 <div className='options'>
                     <div className='dropdown-content'>
-                        <NavLink to="/">Option 1</NavLink>
+                        <NavLink to="/">Home</NavLink>
                         <NavLink to="/community">Community</NavLink>
-                        <NavLink to="/strategist">Option 3</NavLink>
+                        <NavLink to="/games">Games</NavLink>
                     </div>
                 </div>
                 {user ? <SignOut auth={auth} /> : <SignIn />}
