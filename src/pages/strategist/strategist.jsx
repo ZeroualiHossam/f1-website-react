@@ -1,5 +1,33 @@
 import React, { useState } from 'react';
 import Header from '../../components/header/header';
+import './strategist.css';
+
+const circuits = [
+    "abu dhabi",
+    "australia",
+    "austria",
+    "azerbaijan",
+    "bahrain",
+    "belgium",
+    "brazil",
+    "canada",
+    "china",
+    "hungary",
+    "imola",
+    "japan",
+    "mexico",
+    "miami",
+    "monaco",
+    "monza",
+    "netherlands",
+    "qatar",
+    "saudi arabia",
+    "singapore",
+    "spain",
+    "united kingdom",
+    "usa - austin",
+    "usa - vegas"
+];
 
 function Strategist() {
     const [tyreData, setTyreData] = useState({
@@ -55,7 +83,7 @@ function Strategist() {
             <Header />
             <form onSubmit={handleSubmit}>
                 <h2>Tyre Data</h2>
-                <div>
+                <div className={tyreDataMethod === 'ByStintsData' ? '' : 'hidden'}>
                     <label>Soft Time: </label>
                     <input
                         type="number"
@@ -63,7 +91,7 @@ function Strategist() {
                         onChange={(e) => setTyreData({ ...tyreData, soft: { ...tyreData.soft, time: parseFloat(e.target.value) } })}
                     />
                 </div>
-                <div>
+                <div className={tyreDataMethod === 'ByStintsData' ? '' : 'hidden'}>
                     <label>Soft Loss: </label>
                     <input
                         type="number"
@@ -71,7 +99,7 @@ function Strategist() {
                         onChange={(e) => setTyreData({ ...tyreData, soft: { ...tyreData.soft, loss: parseFloat(e.target.value) } })}
                     />
                 </div>
-                <div>
+                <div className={tyreDataMethod === 'ByStintsData' ? '' : 'hidden'}>
                     <label>Medium Time: </label>
                     <input
                         type="number"
@@ -79,7 +107,7 @@ function Strategist() {
                         onChange={(e) => setTyreData({ ...tyreData, medium: { ...tyreData.medium, time: parseFloat(e.target.value) } })}
                     />
                 </div>
-                <div>
+                <div className={tyreDataMethod === 'ByStintsData' ? '' : 'hidden'}>
                     <label>Medium Loss: </label>
                     <input
                         type="number"
@@ -87,7 +115,7 @@ function Strategist() {
                         onChange={(e) => setTyreData({ ...tyreData, medium: { ...tyreData.medium, loss: parseFloat(e.target.value) } })}
                     />
                 </div>
-                <div>
+                <div className={tyreDataMethod === 'ByStintsData' ? '' : 'hidden'}>
                     <label>Hard Time: </label>
                     <input
                         type="number"
@@ -95,7 +123,7 @@ function Strategist() {
                         onChange={(e) => setTyreData({ ...tyreData, hard: { ...tyreData.hard, time: parseFloat(e.target.value) } })}
                     />
                 </div>
-                <div>
+                <div className={tyreDataMethod === 'ByStintsData' ? '' : 'hidden'}>
                     <label>Hard Loss: </label>
                     <input
                         type="number"
@@ -105,11 +133,15 @@ function Strategist() {
                 </div>
                 <div>
                     <label>Circuit: </label>
-                    <input
-                        type="text"
+                    <select
                         value={circuit}
                         onChange={(e) => setCircuit(e.target.value)}
-                    />
+                    >
+                        <option value="">Select a circuit</option>
+                        {circuits.map((circuit, index) => (
+                            <option key={index} value={circuit}>{circuit}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label>Laps: </label>
