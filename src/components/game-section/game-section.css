@@ -1,0 +1,24 @@
+.gamesection-container {
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gamesection-container:hover {
+    transform: scale(1.05);
+    border-color: #ff0000;
+}
+
+.gamesection-container img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
