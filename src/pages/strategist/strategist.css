@@ -1,3 +1,133 @@
 .hidden {
     display: none;
 }
+
+
+.strategist-container {
+    max-width: 1280px;
+    width: 100%; /* Para que el contenedor sea responsivo */
+    margin: 50px auto; /* Centrar horizontalmente y agregar margen vertical */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.tyre-method-tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tyre-method-tabs button {
+    flex: 1; /* Permitir que los botones ocupen el mismo ancho */
+    padding: 20px 0; /* Aumentar el padding vertical */
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    margin-right: 10px; /* Espacio entre los botones */
+}
+
+.tyre-method-tabs button:last-child {
+    margin-right: 0; /* Eliminar el margen derecho del último botón */
+}
+
+.tyre-method-tabs button:hover {
+    background-color: #e0e0e0;
+}
+
+.tyre-method-tabs button.active {
+    background-color: #ff0000;
+    color: white;
+}
+
+.input-frame {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #ff0000;
+    outline: none;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #000000;
+}
+
+.loading-text {
+    text-align: center;
+    font-size: 18px;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.response-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+}
+
+.arrow-link {
+    position: fixed; /* Fija la posición */
+    top: 100px; /* Distancia desde la parte inferior */
+    left: 20px; /* Distancia desde el lado derecho */
+}
+
+.arrow-img {
+    width: 30px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
